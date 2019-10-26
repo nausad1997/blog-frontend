@@ -1,0 +1,32 @@
+<form #createBlogForm="ngForm" (ngSubmit)="createBlog()">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title:</label>
+        <input type="email" class="form-control" name="blogTitle" [(ngModel)]="blogTitle" #title="ngModel"
+            id="exampleFormControlInput1" placeholder="Enter Title" required>
+    </div>
+    <div [hidden]="title.valid || title.pristine" class="alert alert-danger">Blog Title Is Required</div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Description:</label>
+        <input type="email" class="form-control" name="blogDescription" [(ngModel)]="blogDescription"
+            #description="ngModel" id="exampleFormControlInput1" placeholder="Enter Description" required>
+    </div>
+    <div [hidden]="description.valid || description.pristine" class="alert alert-danger">Description Is Required</div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">BodyHtml:</label>
+        <textarea class="form-control" name="blogBody" [(ngModel)]="blogBody" id="exampleFormControlTextarea1"
+            #body="ngModel" rows="3" placeholder="Enter Body" required></textarea>
+    </div>
+    <div [hidden]="body.valid || body.pristine" class="alert alert-danger">Blog Body Is Required</div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">SelectCategory:</label>
+        <select [(ngModel)]="blogCategory" #category="ngModel" name="blogCategory" class="form-control"
+            id="exampleFormControlSelect1"  required>
+            <option *ngFor="let category of blogCategories" [value]="category">{{category}}</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit" [disabled]="!createBlogForm.valid" class="btn btn-primary">PostIt</button>
+    </div>
+
+
+</form>
